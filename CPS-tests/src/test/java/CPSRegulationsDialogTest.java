@@ -25,33 +25,42 @@ public class CPSRegulationsDialogTest {
     @Test(priority = 0)
     public void testMainPageOpeningProperly() {
 
-        System.out.println("[Test] czy otwiera się strona główna.");
+        System.out.println("[Test] Weryfikacja poprawnego otwarcia strony głównej portalu.");
         /* Test passes if the title of the opened page is equal to given as assertion parameter */
         CPSRegulationsDialog pageTitle = new CPSRegulationsDialog(driver, driverWait);
         Assert.assertEquals(pageTitle.goToPage(), "Currenda Portal Statystyczny");
-        System.out.println("Strona główna otworzyła się poprawnie.");
     }
 
     @Test(priority = 1)
-    public void testClickingAcceptButton() {
-
-        System.out.println("[Test] próba akceptacji okna regulaminu.");
-        CPSRegulationsDialog acceptButton = new CPSRegulationsDialog(driver, driverWait);
-        Assert.assertTrue(acceptButton.acceptRegulations());
-
-    }
-
-    @Test(priority = 2)
     public void testClickingCancelButton() {
 
-        System.out.println("[Test] próba anulowania okna regulaminu.");
+        System.out.println("[Test] Weryfikacja pojawienia się komunikatu podczas próby " +
+                "zamknięcia regulaminu bez jego akceptacji.");
         CPSRegulationsDialog cancelButton = new CPSRegulationsDialog(driver, driverWait);
         Assert.assertTrue(cancelButton.cancelRegulations());
 
     }
+    @Test(priority = 2)
+    public void testClosingNonAcceptedDialog() {
 
-   /* @AfterTest
+        System.out.println("[Test] Weryfikacja skuteczności zamknięcia okna dialogowego informującego o" +
+                "konieczności akceptacji regulaminu.");
+        CPSRegulationsDialog cancelButton = new CPSRegulationsDialog(driver, driverWait);
+        Assert.assertTrue(cancelButton.closeRegulationsWarningWindow());
+
+    }
+    @Test(priority = 3)
+    public void testClickingAcceptButton() {
+
+        System.out.println("[Test] Weryfikacja skuteczności akceptacji regulaminu portalu. ");
+        CPSRegulationsDialog dialogCloseButton = new CPSRegulationsDialog(driver, driverWait);
+        Assert.assertTrue(dialogCloseButton.acceptRegulations());
+
+    }
+
+   @AfterTest
     public void closeAndQuitDriver() {
+       System.out.println("Kończenie pracy drivera.");
         driver.quit();
-    } */
+    }
 }

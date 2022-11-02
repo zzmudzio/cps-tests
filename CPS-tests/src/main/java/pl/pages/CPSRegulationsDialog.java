@@ -28,6 +28,7 @@ public class CPSRegulationsDialog implements AppPages {
     By regulationsDialogAcceptButtonLocator = new By.ByXPath(".//div[@class='e-dlg-container " +
             "e-dlg-center-center']" +
                     "/div/div[3]/span/button[contains(text(), 'Akceptuję')]");
+    By regulationsNotAcceptedCloseButtonLocator = new By.ByXPath("//button[contains(text(), 'Zamknij')]");
 
     @Override
     public String goToPage() {
@@ -41,9 +42,7 @@ public class CPSRegulationsDialog implements AppPages {
 
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsDialogLocator)); //10seconds
-
             /* Regulation dialog has to be scrolled down for accept button to be enabled */
-
             Robot mouse = new Robot();
             mouse.mouseWheel(300);
         }
@@ -79,6 +78,22 @@ public class CPSRegulationsDialog implements AppPages {
         }
         catch(NotFoundException nfe) {
             System.out.println("Nie udało się odnaleźć przycisku Cancel.");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean closeRegulationsWarningWindow() {
+        try {
+            driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsNotAcceptedCloseButtonLocator)); //Duration = 10seconds
+            driver.findElement(regulationsNotAcceptedCloseButtonLocator).click();
+        }
+        catch(TimeoutException te) {
+            System.out.println("Okno informacyjne dot. konieczności akceptacji regulaminu nie pojawiło się.");
+            return false;
+        }
+        catch(NotFoundException nfe) {
+            System.out.println("Przycisk \'Zamknij\' nie pojawił się. ");
             return false;
         }
         return true;
