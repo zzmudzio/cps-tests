@@ -6,8 +6,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pl.config.WebDrivers;
 import pl.pages.CPSAppSettings;
-import pl.pages.CPSRegulationsDialog;
-
 import java.time.Duration;
 
 public class CPSSettingsTest {

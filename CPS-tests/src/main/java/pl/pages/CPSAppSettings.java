@@ -18,7 +18,12 @@ public class CPSAppSettings extends AppPages{
     }
 
     By settingsButtonLocator = new By.ByXPath("//div[@data-qa='sidebar_Konfiguracja']");
-    By addConnectionButton = new By.ByXPath("//button[contains(text(), 'Dodaj połączenie')]");
+    By addConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Dodaj połączenie')]");
+    By srvNameFieldLocator = new By.ByXPath("//input[@id='textbox_40']");
+    By dbNameFieldLocator = new By.ByXPath("//input[@id='textbox_41']");
+    By loginFieldLocator = new By.ByXPath("//input[@id='textbox_42']");
+    By passwordFieldLocator = new By.ByXPath("//input[@id='textbox_43']");
+
 
     public String goToMainPage() {
         driver.get(AppPages.getMainPageAddress());
@@ -39,6 +44,12 @@ public class CPSAppSettings extends AppPages{
             return false;
         }
         return true;
+    }
+
+    public boolean addDbConnections() {
+
+        return false;
+
     }
 
 
