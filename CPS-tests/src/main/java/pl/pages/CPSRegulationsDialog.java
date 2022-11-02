@@ -1,7 +1,5 @@
 package pl.pages;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Coordinates;
-import org.openqa.selenium.interactions.Locatable;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.config.AppPages;
@@ -13,7 +11,7 @@ This window appears after the first installation of CPS or after
 regulations changing.
 
  */
-public class CPSRegulationsDialog implements AppPages {
+public class CPSRegulationsDialog extends AppPages {
 
     WebDriver driver;
     WebDriverWait driverWait;
@@ -31,8 +29,8 @@ public class CPSRegulationsDialog implements AppPages {
     By regulationsNotAcceptedCloseButtonLocator = new By.ByXPath("//button[contains(text(), 'Zamknij')]");
 
     @Override
-    public String goToPage() {
-        driver.get(AppPages.MAIN_PAGE);
+    public String goToMainPage() {
+        driver.get(AppPages.getMainPageAddress());
         return driver.getTitle();
     }
 
@@ -41,7 +39,7 @@ public class CPSRegulationsDialog implements AppPages {
         /* Waiting for regulations dialog to be visible */
 
         try {
-            driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsDialogLocator)); //10seconds
+            driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsDialogLocator)); //5 seconds
             /* Regulation dialog has to be scrolled down for accept button to be enabled */
             Robot mouse = new Robot();
             mouse.mouseWheel(300);
@@ -68,8 +66,8 @@ public class CPSRegulationsDialog implements AppPages {
     public boolean cancelRegulations() {
 
         try {
-            driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsDialogLocator)); //Duration = 10seconds
-            driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsDialogCancelButtonLocator)); //Duration = 10seconds
+            driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsDialogLocator)); //Duration = 5s
+            driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsDialogCancelButtonLocator)); //Duration = 5s
             driver.findElement(regulationsDialogCancelButtonLocator).click();
         }
         catch(TimeoutException te) {
@@ -85,7 +83,7 @@ public class CPSRegulationsDialog implements AppPages {
 
     public boolean closeRegulationsWarningWindow() {
         try {
-            driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsNotAcceptedCloseButtonLocator)); //Duration = 10seconds
+            driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsNotAcceptedCloseButtonLocator)); //Duration = 5s
             driver.findElement(regulationsNotAcceptedCloseButtonLocator).click();
         }
         catch(TimeoutException te) {
@@ -97,10 +95,5 @@ public class CPSRegulationsDialog implements AppPages {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public void closePage() {
-        driver.close();
     }
 }

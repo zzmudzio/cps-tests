@@ -1,0 +1,8 @@
+<suite name="Settings Testing">
+    <test name="Settings maintenance" >
+        <classes>
+            <class name="CPSSettingsTest" />
+        </classes>
+    </test>
+</suite>
+
