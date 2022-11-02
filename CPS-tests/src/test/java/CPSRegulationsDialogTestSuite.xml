@@ -1,0 +1,8 @@
+<suite name="Regulations Dialog Testing">
+    <test name="Regulations Dialog maintenance" >
+        <classes>
+            <class name="CPSRegulationsDialogTest" />
+        </classes>
+    </test>
+</suite>
+
