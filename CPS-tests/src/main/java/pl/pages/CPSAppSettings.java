@@ -18,6 +18,7 @@ public class CPSAppSettings extends AppPages{
     }
 
     By settingsButtonLocator = new By.ByXPath("//div[@data-qa='sidebar_Konfiguracja']");
+    By addConnectionButton = new By.ByXPath("//button[contains(text(), 'Dodaj połączenie')]");
 
     public String goToMainPage() {
         driver.get(AppPages.getMainPageAddress());
@@ -39,4 +40,6 @@ public class CPSAppSettings extends AppPages{
         }
         return true;
     }
+
+
 }
