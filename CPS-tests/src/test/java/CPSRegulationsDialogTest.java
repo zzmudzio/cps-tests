@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pl.config.AppPages;
 import pl.config.WebDrivers;
 import pl.pages.CPSRegulationsDialog;
 import java.time.Duration;
@@ -14,6 +13,7 @@ public class CPSRegulationsDialogTest {
 
     private WebDriver driver;
     private WebDriverWait driverWait;
+
 
     @BeforeTest
     public void initializeDriver() {
