@@ -125,5 +125,4 @@ public class CPSAppSettings extends AppPages{
         }
         return true;
     }
-
 }
