@@ -10,7 +10,6 @@ import java.time.Duration;
 
 
 public class CPSRegulationsDialogTest {
-
     private WebDriver driver;
     private WebDriverWait driverWait;
     private CPSRegulationsDialog testingObject;
