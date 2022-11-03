@@ -28,7 +28,7 @@ public class CPSRegulationsDialogTest {
         System.out.println("[Test] Weryfikacja poprawnego otwarcia strony głównej portalu.");
         /* Test passes if the title of the opened page is equal to given as assertion parameter */
         CPSRegulationsDialog pageTitle = new CPSRegulationsDialog(driver, driverWait);
-        Assert.assertEquals(pageTitle.goToPage(), "Currenda Portal Statystyczny");
+        Assert.assertEquals(pageTitle.goToMainPage(), "Currenda Portal Statystyczny");
     }
 
     @Test(priority = 1)

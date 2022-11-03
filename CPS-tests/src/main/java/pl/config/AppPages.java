@@ -1,11 +1,11 @@
 package pl.config;
 
-import org.openqa.selenium.WebDriver;
 
-public interface AppPages {
-
-        static final String MAIN_PAGE = "http://192.168.0.220:9191";
-        public String goToPage();
-        public void closePage();
+public abstract class AppPages {
+        private static final String MAIN_PAGE_ADDRESS = "http://192.168.0.220:9191/#";
+        public abstract String goToMainPage();
+        public static String getMainPageAddress() {
+                return MAIN_PAGE_ADDRESS;
+        }
 
 }
