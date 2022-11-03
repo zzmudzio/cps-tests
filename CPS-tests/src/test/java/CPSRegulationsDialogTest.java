@@ -13,13 +13,14 @@ public class CPSRegulationsDialogTest {
 
     private WebDriver driver;
     private WebDriverWait driverWait;
-
+    private CPSRegulationsDialog testingObject;
 
     @BeforeTest
     public void initializeDriver() {
         System.out.println("[Test] Trwa inicjalizowanie drivera. ");
         driver = WebDrivers.initializeChromeDriver();
         driverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        testingObject = new CPSRegulationsDialog(driver, driverWait);
     }
 
     @Test(priority = 0)
@@ -27,8 +28,7 @@ public class CPSRegulationsDialogTest {
 
         System.out.println("[Test] Weryfikacja poprawnego otwarcia strony głównej portalu.");
         /* Test passes if the title of the opened page is equal to given as assertion parameter */
-        CPSRegulationsDialog pageTitle = new CPSRegulationsDialog(driver, driverWait);
-        Assert.assertEquals(pageTitle.goToMainPage(), "Currenda Portal Statystyczny");
+        Assert.assertEquals(testingObject.goToMainPage(), "Currenda Portal Statystyczny");
     }
 
     @Test(priority = 1)
@@ -36,8 +36,7 @@ public class CPSRegulationsDialogTest {
 
         System.out.println("[Test] Weryfikacja pojawienia się komunikatu podczas próby " +
                 "zamknięcia regulaminu bez jego akceptacji.");
-        CPSRegulationsDialog cancelButton = new CPSRegulationsDialog(driver, driverWait);
-        Assert.assertTrue(cancelButton.cancelRegulations());
+        Assert.assertTrue(testingObject.cancelRegulations());
 
     }
     @Test(priority = 2)
@@ -45,16 +44,14 @@ public class CPSRegulationsDialogTest {
 
         System.out.println("[Test] Weryfikacja skuteczności zamknięcia okna dialogowego informującego o" +
                 "konieczności akceptacji regulaminu.");
-        CPSRegulationsDialog cancelButton = new CPSRegulationsDialog(driver, driverWait);
-        Assert.assertTrue(cancelButton.closeRegulationsWarningWindow());
+        Assert.assertTrue(testingObject.closeRegulationsWarningWindow());
 
     }
     @Test(priority = 3)
     public void testClickingAcceptButton() {
 
         System.out.println("[Test] Weryfikacja skuteczności akceptacji regulaminu portalu. ");
-        CPSRegulationsDialog dialogCloseButton = new CPSRegulationsDialog(driver, driverWait);
-        Assert.assertTrue(dialogCloseButton.acceptRegulations());
+        Assert.assertTrue(testingObject.acceptRegulations());
 
     }
 
