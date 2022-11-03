@@ -61,6 +61,20 @@ public class CPSSettingsTest {
         Assert.assertTrue(testingObject.clickTestConnection());
     }
 
+    @Test(priority = 4)
+    public void testSaveConnection() {
+
+        System.out.println("[Test] Weryfikacja poprawnej pracy przycisku \'Zapisz\'.");
+        Assert.assertTrue(testingObject.clickSaveConnection());
+    }
+
+    @Test(priority = 5)
+    public void testCloseConnectionWindow() {
+
+        System.out.println("[Test] Weryfikacja poprawnej pracy przycisku \'Zamknij\'.");
+        Assert.assertTrue(testingObject.clickCloseConnectionWindow());
+    }
+
     @AfterTest(enabled = false)
     public void closeAndQuitDriver() {
         System.out.println("Kończenie pracy drivera.");

@@ -27,6 +27,8 @@ public class CPSAppSettings extends AppPages{
     By testConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Test połączenia')]");
     By saveConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Zapisz')]");
 
+    By closeConnectionWindowButtonLocator = new By.ByXPath("//button[@title='Zamknij']");
+
 
     public String goToMainPage() {
         driver.get(AppPages.getMainPageAddress());
@@ -39,11 +41,11 @@ public class CPSAppSettings extends AppPages{
             driver.findElement(settingsButtonLocator).click();
         }
         catch(TimeoutException te) {
-            System.out.println("Przycisk konfiguracji nie pojawił się.");
+            System.out.println("Błąd: Przycisk konfiguracji nie pojawił się.");
             return false;
         }
         catch(NotFoundException nfe) {
-            System.out.println("Przycisk konfiguracji nie został odnaleziony.");
+            System.out.println("Błąd: Przycisk konfiguracji nie został odnaleziony.");
             return false;
         }
         return true;
@@ -56,11 +58,11 @@ public class CPSAppSettings extends AppPages{
             driver.findElement(addConnectionButtonLocator).click();
         }
         catch(TimeoutException te) {
-            System.out.println("Przycisk dodawania połączenia nie pojawił się.");
+            System.out.println("Błąd: Przycisk dodawania połączenia nie pojawił się.");
             return false;
         }
         catch(NotFoundException nfe) {
-            System.out.println("Przycisk dodawania połączenia nie został odnaleziony");
+            System.out.println("Błąd: Przycisk dodawania połączenia nie został odnaleziony");
             return false;
         }
         return true;
@@ -100,11 +102,11 @@ public class CPSAppSettings extends AppPages{
             driver.findElement(testConnectionButtonLocator).click();
         }
         catch(TimeoutException te) {
-            System.out.println("Przycisk \'Test połączenia\' nie pojawił się.");
+            System.out.println("Błąd: Przycisk \'Test połączenia\' nie pojawił się.");
             return false;
         }
         catch(NotFoundException nfe) {
-            System.out.println("Przycisk \'Test połączenia\' nie został odnaleziony.");
+            System.out.println("Błąd: Przycisk \'Test połączenia\' nie został odnaleziony.");
             return false;
         }
         return true;
@@ -112,15 +114,31 @@ public class CPSAppSettings extends AppPages{
 
     public boolean clickSaveConnection() {
         try {
-            driverWait.until(ExpectedConditions.visibilityOfElementLocated(saveConnectionButtonLocator));
+            driverWait.until(ExpectedConditions.elementToBeClickable(saveConnectionButtonLocator));
             driver.findElement(saveConnectionButtonLocator).click();
         }
         catch(TimeoutException te) {
-            System.out.println("Przycisk \'Zapisz połączenie\' nie pojawił się.");
+            System.out.println("Błąd: Przycisk \'Zapisz połączenie\' nie uaktywnił się.");
             return false;
         }
         catch(NotFoundException nfe) {
-            System.out.println("Przycisk \'Zapisz połączenie\' nie został odnaleziony.");
+            System.out.println("Błąd: Przycisk \'Zapisz połączenie\' nie został odnaleziony.");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean clickCloseConnectionWindow() {
+        try {
+            driverWait.until(ExpectedConditions.elementToBeClickable(closeConnectionWindowButtonLocator));
+            driver.findElement(closeConnectionWindowButtonLocator).click();
+        }
+        catch(TimeoutException te) {
+            System.out.println("Błąd: Przycisk \'Zamknij\' nie uaktywnił się.");
+            return false;
+        }
+        catch(NotFoundException nfe) {
+            System.out.println("Błąd: Przycisk \'Zamknij\' nie został odnaleziony.");
             return false;
         }
         return true;

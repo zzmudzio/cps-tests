@@ -45,11 +45,11 @@ public class CPSRegulationsDialog extends AppPages {
             mouse.mouseWheel(300);
         }
         catch(TimeoutException te) {
-            System.out.println("Okno regulaminu nie pojawiło się. \n");
+            System.out.println("Błąd: Okno regulaminu nie pojawiło się. \n");
             return false;
         }
         catch(AWTException awte) {
-            System.out.println("Nie udało się przescrollować regulaminu");
+            System.out.println("Błąd: Nie udało się przescrollować regulaminu");
         }
 
         try {
@@ -57,7 +57,7 @@ public class CPSRegulationsDialog extends AppPages {
             driver.findElement(regulationsDialogAcceptButtonLocator).click();
         }
         catch(TimeoutException te) {
-            System.out.println("Przycisk \"Akceptuj\" nie pojawił się. ");
+            System.out.println("Błąd: Przycisk \"Akceptuj\" nie pojawił się. ");
             return false;
         }
         return true;
@@ -71,11 +71,11 @@ public class CPSRegulationsDialog extends AppPages {
             driver.findElement(regulationsDialogCancelButtonLocator).click();
         }
         catch(TimeoutException te) {
-            System.out.println("Okno regulaminu nie pojawiło się. \n");
+            System.out.println("Błąd: Okno regulaminu nie pojawiło się. \n");
             return false;
         }
         catch(NotFoundException nfe) {
-            System.out.println("Nie udało się odnaleźć przycisku Cancel.");
+            System.out.println("Błąd: Nie udało się odnaleźć przycisku Cancel.");
             return false;
         }
         return true;
@@ -87,11 +87,11 @@ public class CPSRegulationsDialog extends AppPages {
             driver.findElement(regulationsNotAcceptedCloseButtonLocator).click();
         }
         catch(TimeoutException te) {
-            System.out.println("Okno informacyjne dot. konieczności akceptacji regulaminu nie pojawiło się.");
+            System.out.println("Bład: Okno informacyjne dot. konieczności akceptacji regulaminu nie pojawiło się.");
             return false;
         }
         catch(NotFoundException nfe) {
-            System.out.println("Przycisk \'Zamknij\' nie pojawił się. ");
+            System.out.println("Błąd: Przycisk \'Zamknij\' nie pojawił się. ");
             return false;
         }
         return true;
