@@ -75,6 +75,14 @@ public class CPSSettingsTest {
         Assert.assertTrue(testingObject.clickCloseConnectionWindow());
     }
 
+    @Test(priority = 6)
+    public void testDbConnectionRecordVisibility() {
+
+        System.out.println("[Test] Weryfikacja istnienia zdefiniowanego połączenia do bazy danych.");
+        Assert.assertTrue(testingObject.verifyConnectionExistence());
+
+    }
+
     @AfterTest(enabled = false)
     public void closeAndQuitDriver() {
         System.out.println("Kończenie pracy drivera.");

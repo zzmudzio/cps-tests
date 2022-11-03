@@ -26,8 +26,8 @@ public class CPSAppSettings extends AppPages{
     By passwordFieldLocator = new By.ByXPath("//input[@placeholder='Podaj hasło użytkownika SQL']");
     By testConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Test połączenia')]");
     By saveConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Zapisz')]");
-
     By closeConnectionWindowButtonLocator = new By.ByXPath("//button[@title='Zamknij']");
+    By dbConnectionEntryLocator = new By.ByXPath("//td[@aria-label='1 column header Lp.' and contains(text(), '1')]");
 
 
     public String goToMainPage() {
@@ -143,6 +143,16 @@ public class CPSAppSettings extends AppPages{
         }
         return true;
     }
-
-    /* todo: verifying added connection existence */
+    public boolean verifyConnectionExistence() {
+        try {
+            driverWait.until(ExpectedConditions.visibilityOfElementLocated(dbConnectionEntryLocator));
+            driver.findElement(dbConnectionEntryLocator);
+        }
+        catch(NotFoundException nfe) {
+            System.out.println("Błąd: połączenie do bazy danych nie zostało poprawnie dodane. " +
+                    "Nie odnaleziono rekordu.");
+            return false;
+        }
+        return true;
+    }
 }
