@@ -143,4 +143,6 @@ public class CPSAppSettings extends AppPages{
         }
         return true;
     }
+
+    /* todo: verifying added connection existence */
 }
