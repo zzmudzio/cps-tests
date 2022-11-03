@@ -30,6 +30,23 @@ public class CPSSettingsTest {
 
     }
 
+    @Test(priority = 1)
+    public void testAddConnectionButton() {
+
+        System.out.println("[Test] Weryfikacja poprawnej pracy przycisku \'Dodaj połączenie\'");
+        CPSAppSettings addConnButton = new CPSAppSettings(driver, driverWait);
+        addConnButton.goToMainPage();
+        Assert.assertTrue(addConnButton.clickAddConnection());
+
+    }
+
+    @Test(priority = 2, enabled = false)
+    public void testAddNewConnection() {
+
+        /*...*/
+
+    }
+
     @AfterTest(enabled = false)
     public void closeAndQuitDriver() {
         System.out.println("Kończenie pracy drivera.");

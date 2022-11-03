@@ -46,11 +46,26 @@ public class CPSAppSettings extends AppPages{
         return true;
     }
 
-    public boolean addDbConnections() {
+    public boolean clickAddConnection() {
+
+        try {
+            driverWait.until(ExpectedConditions.visibilityOfElementLocated(addConnectionButtonLocator));
+            driver.findElement(addConnectionButtonLocator).click();
+        }
+        catch(TimeoutException te) {
+            System.out.println("Przycisk dodawania połączenia nie pojawił się.");
+            return false;
+        }
+        catch(NotFoundException nfe) {
+            System.out.println("Przycisk dodawania połączenia nie został odnaleziony");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean addDbConnections(String serverName, String dataBaseName, String user, String password) {
 
         return false;
 
     }
-
-
 }
