@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.config.AppPages;
+import pl.config.DataFiles;
+import pl.operations.Screenshot;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +51,7 @@ public class CPSInstructions {
             return null;
         }
 
-        List<String> windowsHandleList = new ArrayList<String>(driver.getWindowHandles()); //because Set doesn't provide get method
+        List<String> windowsHandleList = new ArrayList<>(driver.getWindowHandles()); //because Set doesn't provide get method
         return windowsHandleList.get(1); //because at position '0' is being stored main window id
     }
-
 }
