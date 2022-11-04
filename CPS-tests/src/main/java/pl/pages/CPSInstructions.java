@@ -1,0 +1,57 @@
+package pl.pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NotFoundException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pl.config.AppPages;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+public class CPSInstructions {
+
+    private WebDriver driver;
+    private WebDriverWait driverWait;
+
+    public CPSInstructions(WebDriver driver, WebDriverWait driverWait) {
+        this.driver = driver;
+        this.driverWait = driverWait;
+    }
+
+    By instructionsMainButtonLocator = new By.ByXPath("//div[contains(text(), 'Instrukcje')]");
+    By instructionsReportsAndStatisticsLocator = new By.ByXPath("//*[@data-qa='sidebar_1. Definicje statystyk i raportów']");
+    By instructionsUserInstructionsLocator = new By.ByXPath("//*[@data-qa='sidebar_2. Użytkownika']");
+    By instructionsAdminInstructionsLocator = new By.ByXPath("//*[@data-qa='sidebar_3. Administratora']");
+    By instructionsWhatsNewLocator = new By.ByXPath("//*[@data-qa='sidebar_4. Co nowego w wersji (0.5.0 BETA)']");
+
+    public String goToMainPage() {
+        driver.get(AppPages.getMainPageAddress());
+        return driver.getWindowHandle(); // we need the main window handle because of further tests
+    }
+
+    public String goToReportsInstruction() {
+
+        try {
+            driverWait.until(ExpectedConditions.elementToBeClickable(instructionsMainButtonLocator));
+            driver.findElement(instructionsMainButtonLocator).click();
+            driverWait.until(ExpectedConditions.visibilityOfElementLocated(instructionsReportsAndStatisticsLocator));
+            driver.findElement(instructionsReportsAndStatisticsLocator).click();
+        }
+        catch(TimeoutException te) {
+            System.out.println("Błąd: przycisk instrukcji nie pojawił się.");
+            return null;
+        }
+        catch(NotFoundException nfe) {
+            System.out.println("Błąd: przycisk instrukcji nie został odnaleziony");
+            return null;
+        }
+
+        List<String> windowsHandleList = new ArrayList<String>(driver.getWindowHandles()); //because Set doesn't provide get method
+        return windowsHandleList.get(1); //because at position '0' is being stored main window id
+    }
+
+}

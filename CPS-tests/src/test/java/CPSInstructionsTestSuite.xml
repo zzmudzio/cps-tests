@@ -1,0 +1,8 @@
+<suite name="Instructions Menu and Download Testing">
+    <test name="Instructions menu testing" >
+        <classes>
+            <class name="CPSInstructionsTest" />
+        </classes>
+    </test>
+</suite>
+
