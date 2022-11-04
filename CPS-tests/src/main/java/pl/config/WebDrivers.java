@@ -11,6 +11,9 @@ public class WebDrivers {
         System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH);
         return new ChromeDriver();
     }
+    public static void closeWindow(WebDriver driver) {
+        driver.close();
+    }
     public static String getChromeDriverPath() {
         return CHROMEDRIVER_PATH;
     }

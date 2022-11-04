@@ -7,10 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.config.AppPages;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class CPSInstructions {
 

@@ -14,6 +14,7 @@ public class CPSInstructionsTest {
     private CPSInstructions testingObject;
     private String mainWindowHandle;
 
+
     @BeforeTest
     public void initializeDriver() {
         System.out.println("[Test] Trwa inicjalizowanie drivera. ");
@@ -23,21 +24,26 @@ public class CPSInstructionsTest {
     }
 
     @Test(priority = 0)
-    public void testMainPageOpeningProperly()
-    {
+    public void testMainPageOpeningProperly() {
         System.out.println("[Test] Weryfikacja skuteczności otwarcia strony głównej aplikacji.");
         mainWindowHandle = testingObject.goToMainPage();
         Assert.assertEquals(driver.getTitle(), "Currenda Portal Statystyczny");
     }
 
     @Test(priority = 1)
-    public void goToReportsInstruction()
-    {
+    public void testOpeningReportsInstruction() {
         System.out.println("[Test] Weryfikacja skuteczności otwarcia instrukcji raportów.");
+        String newWindowHandle = testingObject.goToReportsInstruction();
         System.out.println("[Test] Nastąpi porównanie identyfikatorów okien - porównanie id okna głównego" +
-                " z id nowo otwartego okna raportów");
+                " z id nowo otwartego okna raportów(muszą być różne)");
         System.out.println("[Test] Id głównego okna: " + mainWindowHandle);
-        System.out.println("[Test] Id nowo otwartego okna: " + testingObject.goToReportsInstruction());
-        //Assert.assertNotEquals(mainWindowHandle, testingObject.goToReportsInstruction());
+        System.out.println("[Test] Id nowo otwartego okna: " + newWindowHandle);
+
+        Assert.assertNotEquals(mainWindowHandle, newWindowHandle);
+        System.out.println("[Test] Następuje zamknięcie nowego okna oraz przejście do głównej strony.");
+        driver.switchTo().window(newWindowHandle);
+        WebDrivers.closeWindow(driver);
+        driver.switchTo().window(mainWindowHandle);
     }
+
 }
