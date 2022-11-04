@@ -9,7 +9,7 @@ data is being stored.
 
 public enum DataFiles {
 
-    DB_CONN_FILE(System.getProperty("user.dir")+"\\src\\test\\test-data\\db-connections\\SettingsData.csv"),
+    DB_CONN_FILE(System.getProperty("user.dir")+"\\src\\test\\test-input-data\\db-connections\\SettingsData.csv"),
     SCREENSHOTS_DIR(System.getProperty("user.dir")+"\\src\\test\\tests-screenshots\\");
     private final String filePath;
     private DataFiles(String filePath) {
