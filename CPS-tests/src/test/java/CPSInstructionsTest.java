@@ -1,6 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pl.config.DataFiles;
@@ -48,4 +49,10 @@ public class CPSInstructionsTest {
         WebDrivers.closeWindow(driver);
         driver.switchTo().window(mainWindowHandle);
     }
+    @AfterTest
+    public void closeAndQuitDriver() {
+        System.out.println("Kończenie pracy drivera.");
+        driver.quit();
+    }
+
 }
