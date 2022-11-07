@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.config.AppPages;
-import pl.config.DataFiles;
-import pl.operations.Screenshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +23,6 @@ public class CPSInstructions {
 
     By instructionsMainButtonLocator = new By.ByXPath("//div[contains(text(), 'Instrukcje')]");
     By instructionsReportsAndStatisticsLocator = new By.ByXPath("//*[@data-qa='sidebar_1. Definicje statystyk i raportów']");
-    By instructionsUserInstructionsLocator = new By.ByXPath("//*[@data-qa='sidebar_2. Użytkownika']");
-    By instructionsAdminInstructionsLocator = new By.ByXPath("//*[@data-qa='sidebar_3. Administratora']");
-    By instructionsWhatsNewLocator = new By.ByXPath("//*[@data-qa='sidebar_4. Co nowego w wersji (0.5.0 BETA)']");
 
     public String goToMainPage() {
         driver.get(AppPages.getMainPageAddress());

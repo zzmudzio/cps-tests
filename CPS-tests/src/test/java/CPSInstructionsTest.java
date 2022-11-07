@@ -13,7 +13,6 @@ import java.time.Duration;
 public class CPSInstructionsTest {
 
     private WebDriver driver;
-    private WebDriverWait driverWait;
     private CPSInstructions testingObject;
     private String mainWindowHandle;
 
@@ -22,7 +21,7 @@ public class CPSInstructionsTest {
     public void initializeDriver() {
         System.out.println("[Test] Trwa inicjalizowanie drivera. ");
         driver = WebDrivers.initializeChromeDriver();
-        driverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait driverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
         testingObject = new CPSInstructions(driver, driverWait);
     }
 
@@ -54,5 +53,4 @@ public class CPSInstructionsTest {
         System.out.println("Kończenie pracy drivera.");
         driver.quit();
     }
-
 }

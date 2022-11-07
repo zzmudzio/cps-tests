@@ -29,7 +29,6 @@ public class CPSAppSettings extends AppPages{
     By closeConnectionWindowButtonLocator = new By.ByXPath("//button[@title='Zamknij']");
     By dbConnectionEntryLocator = new By.ByXPath("//td[@aria-label='1 column header Lp.' and contains(text(), '1')]");
 
-
     public String goToMainPage() {
         driver.get(AppPages.getMainPageAddress());
         return driver.getTitle();
@@ -151,6 +150,10 @@ public class CPSAppSettings extends AppPages{
         catch(NotFoundException nfe) {
             System.out.println("Błąd: połączenie do bazy danych nie zostało poprawnie dodane. " +
                     "Nie odnaleziono rekordu.");
+            return false;
+        }
+        catch(TimeoutException te) {
+            System.out.println("Błąd: połączenie do bazy danych nie zostało odnalezione.");
             return false;
         }
         return true;
