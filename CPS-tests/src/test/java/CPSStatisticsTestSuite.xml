@@ -1,0 +1,8 @@
+<suite name="Statistics Testing">
+    <test name="Statistics maintenance" >
+        <classes>
+            <class name="CPSStatisticsTest_P" />
+        </classes>
+    </test>
+</suite>
+

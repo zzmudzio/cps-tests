@@ -1,7 +1,7 @@
 <suite name="Regulations Dialog Testing">
     <test name="Regulations Dialog maintenance" >
         <classes>
-            <class name="CPSRegulationsDialogTest" />
+            <class name="CPSRegulationsDialogTest_P" />
         </classes>
     </test>
 </suite>

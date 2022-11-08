@@ -9,7 +9,7 @@ import pl.pages.CPSRegulationsDialog;
 import java.time.Duration;
 
 
-public class CPSRegulationsDialogTest {
+public class CPSRegulationsDialogTest_P {
     private WebDriver driver;
     private WebDriverWait driverWait;
     private CPSRegulationsDialog testingObject;

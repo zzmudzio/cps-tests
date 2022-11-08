@@ -9,7 +9,7 @@ import pl.operations.CsvReader;
 import pl.pages.CPSAppSettings;
 import java.time.Duration;
 
-public class CPSSettingsTest {
+public class CPSSettingsTest_P {
 
     private WebDriver driver;
     private WebDriverWait driverWait;
