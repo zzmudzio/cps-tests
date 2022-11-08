@@ -8,7 +8,7 @@ import pl.config.WebDrivers;
 import pl.pages.CPSStatistics;
 import java.time.Duration;
 
-public class CPSStatisticsTest {
+public class CPSStatisticsTest_P {
     private WebDriver driver;
     private WebDriverWait driverWait;
     private CPSStatistics testingObject;

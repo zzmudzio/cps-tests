@@ -10,7 +10,7 @@ import pl.operations.Screenshot;
 import pl.pages.CPSInstructions;
 import java.time.Duration;
 
-public class CPSInstructionsTest {
+public class CPSInstructionsTest_P {
 
     private WebDriver driver;
     private WebDriverWait driverWait;
