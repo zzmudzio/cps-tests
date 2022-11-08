@@ -3,16 +3,16 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pl.operations.CsvReader;
-import pl.pages.CPSAppSettings;
+import pl.pages.CpsAppSettings;
 
-public class CPSSettingsTest_P extends CpsTests {
-    private CPSAppSettings testingObject;
+public class CpsSettingsTestPositive extends CpsTests {
+    private CpsAppSettings testingObject;
 
     @BeforeTest
     public void initializeDriver() {
         System.out.println("[Test] Trwa inicjalizowanie drivera oraz tworzenie obiektu testowego.");
         super.initializeDriver();
-        testingObject = new CPSAppSettings(driver, driverWait);
+        testingObject = new CpsAppSettings(driver, driverWait);
     }
 
     @Test(priority = 0)

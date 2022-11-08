@@ -8,12 +8,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.config.AppPages;
 
-public class CPSAppSettings extends AppPages{
+public class CpsAppSettings extends AppPages{
 
     private final WebDriver driver;
     private final WebDriverWait driverWait;
 
-    public CPSAppSettings(WebDriver driver, WebDriverWait driverWait) {
+    public CpsAppSettings(WebDriver driver, WebDriverWait driverWait) {
         this.driver = driver;
         this.driverWait = driverWait;
     }
