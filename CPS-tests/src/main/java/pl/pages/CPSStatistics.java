@@ -7,9 +7,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.config.AppPages;
 
 
-public class CPSStatistics {
-    private WebDriver driver;
-    private WebDriverWait driverWait;
+public class CPSStatistics extends AppPages{
+    private final WebDriver driver;
+    private final WebDriverWait driverWait;
 
     public CPSStatistics(WebDriver driver, WebDriverWait driverWait) {
         this.driver = driver;
@@ -20,20 +20,13 @@ public class CPSStatistics {
             "'Statystyka spraw')]");
     private final By caseStatisticsPageHeaderLocator = new By.ByXPath("//div[contains(text(), " +
             "' Statystyki pomocnicze / Statystyka spraw ')]");
-
     private final By statisticsTypeLocator = new By.ByXPath("//input[@placeholder" +
             "=\"-- Wybierz rodzaj statystyki --\"]");
-
     private final By casesComeInSum = new By.ByXPath("//td[@class='dx-area-data-cell']" +
             "//tbody/tr[13]/td[1]/span");
 
-    public String goToMainPage() {
-        driver.get(AppPages.getMainPageAddress());
-        driver.manage().window().maximize();
-        return driver.getTitle();
-    }
-
     public String goToStatisticsPage() {
+        super.goToMainPage(driver);
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(caseStatisticsButtonLocator));
             driver.findElement(caseStatisticsButtonLocator).click();
@@ -74,18 +67,17 @@ public class CPSStatistics {
     }
 
     public String getStatisticsCalculations() {
-        String totalSumAsStr = null;
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(casesComeInSum));
             return driver.findElement(casesComeInSum).getText();
         }
         catch(TimeoutException te) {
             System.out.println("Błąd: Suma wpływu spraw nie pojawiła się. ");
-            return null;
+            return "0";
         }
         catch(NotFoundException nfe) {
             System.out.println("Błąd: Obiekt suma wpływu spraw nie został odnaleziony.");
-            return null;
+            return "0";
         }
     }
 }

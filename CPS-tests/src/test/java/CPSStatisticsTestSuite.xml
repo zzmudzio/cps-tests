@@ -1,7 +1,7 @@
 <suite name="Statistics Testing">
     <test name="Statistics maintenance" >
         <classes>
-            <class name="CPSStatisticsTest_P" />
+            <class name="CpsStatisticsTestP" />
         </classes>
     </test>
 </suite>

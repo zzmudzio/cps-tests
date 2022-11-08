@@ -1,5 +1,3 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -8,20 +6,14 @@ import pl.config.DataFiles;
 import pl.config.WebDrivers;
 import pl.operations.Screenshot;
 import pl.pages.CPSInstructions;
-import java.time.Duration;
 
-public class CPSInstructionsTest_P {
-
-    private WebDriver driver;
+public class CpsInstructionsTestP extends CPSTestsMain {
     private CPSInstructions testingObject;
     private String mainWindowHandle;
 
-
     @BeforeTest
     public void initializeDriver() {
-        System.out.println("[Test] Trwa inicjalizowanie drivera. ");
-        driver = WebDrivers.initializeChromeDriver();
-        WebDriverWait driverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        super.initializeDriver();
         testingObject = new CPSInstructions(driver, driverWait);
     }
 
@@ -50,7 +42,6 @@ public class CPSInstructionsTest_P {
     }
     @AfterTest
     public void closeAndQuitDriver() {
-        System.out.println("Kończenie pracy drivera.");
-        driver.quit();
+        super.closeAndQuitDriver();
     }
 }
