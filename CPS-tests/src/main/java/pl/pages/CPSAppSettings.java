@@ -10,28 +10,31 @@ import pl.config.AppPages;
 
 public class CPSAppSettings extends AppPages{
 
-    private final WebDriver driver;
-    private final WebDriverWait driverWait;
+    private WebDriver driver;
+    private WebDriverWait driverWait;
 
     public CPSAppSettings(WebDriver driver, WebDriverWait driverWait) {
         this.driver = driver;
         this.driverWait = driverWait;
     }
 
-    private final By settingsButtonLocator = new By.ByXPath("//div[@data-qa='sidebar_Konfiguracja']");
-    private final By addConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Dodaj połączenie')]");
-    private final By srvNameFieldLocator = new By.ByXPath("//input[@placeholder='Podaj nazwę serwera']");
-    private final By dbNameFieldLocator = new By.ByXPath("//input[@placeholder='Podaj nazwę bazy danych']"); //
-    private final By loginFieldLocator = new By.ByXPath("//input[@placeholder='Podaj login użytkownika SQL']");
-    private final By passwordFieldLocator = new By.ByXPath("//input[@placeholder='Podaj hasło użytkownika SQL']");
-    private final By testConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Test połączenia')]");
-    private final By saveConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Zapisz')]");
-    private final By closeConnectionWindowButtonLocator = new By.ByXPath("//button[@title='Zamknij']");
-    private final By dbConnectionEntryLocator = new By.ByXPath("//td[@aria-label='1 column header Lp.'" +
-            " and contains(text(), '1')]");
+    By settingsButtonLocator = new By.ByXPath("//div[@data-qa='sidebar_Konfiguracja']");
+    By addConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Dodaj połączenie')]");
+    By srvNameFieldLocator = new By.ByXPath("//input[@placeholder='Podaj nazwę serwera']");
+    By dbNameFieldLocator = new By.ByXPath("//input[@placeholder='Podaj nazwę bazy danych']"); //
+    By loginFieldLocator = new By.ByXPath("//input[@placeholder='Podaj login użytkownika SQL']");
+    By passwordFieldLocator = new By.ByXPath("//input[@placeholder='Podaj hasło użytkownika SQL']");
+    By testConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Test połączenia')]");
+    By saveConnectionButtonLocator = new By.ByXPath("//button[contains(text(), 'Zapisz')]");
+    By closeConnectionWindowButtonLocator = new By.ByXPath("//button[@title='Zamknij']");
+    By dbConnectionEntryLocator = new By.ByXPath("//td[@aria-label='1 column header Lp.' and contains(text(), '1')]");
+
+    public String goToMainPage() {
+        driver.get(AppPages.getMainPageAddress());
+        return driver.getTitle();
+    }
 
     public boolean goToSettings() {
-        super.goToMainPage(driver);
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(settingsButtonLocator));
             driver.findElement(settingsButtonLocator).click();
@@ -48,6 +51,7 @@ public class CPSAppSettings extends AppPages{
     }
 
     public boolean clickAddConnection() {
+
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(addConnectionButtonLocator));
             driver.findElement(addConnectionButtonLocator).click();
@@ -64,6 +68,7 @@ public class CPSAppSettings extends AppPages{
     }
 
     public boolean addDbConnections(String serverName, String dataBaseName, String user, String password) {
+
         Actions addConn = new Actions(driver);
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(srvNameFieldLocator));
@@ -96,11 +101,11 @@ public class CPSAppSettings extends AppPages{
             driver.findElement(testConnectionButtonLocator).click();
         }
         catch(TimeoutException te) {
-            System.out.println("Błąd: Przycisk 'Test połączenia' nie pojawił się.");
+            System.out.println("Błąd: Przycisk \'Test połączenia\' nie pojawił się.");
             return false;
         }
         catch(NotFoundException nfe) {
-            System.out.println("Błąd: Przycisk 'Test połączenia' nie został odnaleziony.");
+            System.out.println("Błąd: Przycisk \'Test połączenia\' nie został odnaleziony.");
             return false;
         }
         return true;
@@ -112,11 +117,11 @@ public class CPSAppSettings extends AppPages{
             driver.findElement(saveConnectionButtonLocator).click();
         }
         catch(TimeoutException te) {
-            System.out.println("Błąd: Przycisk 'Zapisz połączenie' nie uaktywnił się.");
+            System.out.println("Błąd: Przycisk \'Zapisz połączenie\' nie uaktywnił się.");
             return false;
         }
         catch(NotFoundException nfe) {
-            System.out.println("Błąd: Przycisk 'Zapisz połączenie' nie został odnaleziony.");
+            System.out.println("Błąd: Przycisk \'Zapisz połączenie\' nie został odnaleziony.");
             return false;
         }
         return true;
@@ -128,11 +133,11 @@ public class CPSAppSettings extends AppPages{
             driver.findElement(closeConnectionWindowButtonLocator).click();
         }
         catch(TimeoutException te) {
-            System.out.println("Błąd: Przycisk 'Zamknij' nie uaktywnił się.");
+            System.out.println("Błąd: Przycisk \'Zamknij\' nie uaktywnił się.");
             return false;
         }
         catch(NotFoundException nfe) {
-            System.out.println("Błąd: Przycisk 'Zamknij' nie został odnaleziony.");
+            System.out.println("Błąd: Przycisk \'Zamknij\' nie został odnaleziony.");
             return false;
         }
         return true;

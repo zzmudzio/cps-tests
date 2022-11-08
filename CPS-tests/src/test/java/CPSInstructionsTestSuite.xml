@@ -1,7 +1,7 @@
 <suite name="Instructions Menu and Download Testing">
     <test name="Instructions menu testing" >
         <classes>
-            <class name="CpsInstructionsTestP" />
+            <class name="CPSInstructionsTest_P" />
         </classes>
     </test>
 </suite>

@@ -1,21 +1,30 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pl.config.WebDrivers;
 import pl.pages.CPSStatistics;
+import java.time.Duration;
 
-
-public class CpsStatisticsTestP extends CPSTestsMain {
+public class CPSStatisticsTest_P {
+    private WebDriver driver;
+    private WebDriverWait driverWait;
     private CPSStatistics testingObject;
+
     @BeforeTest
     public void initializeDriver() {
-        super.initializeDriver();
+        System.out.println("[Test] Trwa inicjalizowanie drivera oraz tworzenie obiektu testowego.");
+        driver = WebDrivers.initializeChromeDriver();
+        driverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
         testingObject = new CPSStatistics(driver, driverWait);
     }
 
     @Test(priority=0)
     public void testStatisticsPageOpeningProperly() {
         System.out.println("[Test] Weryfikacja poprawnego otwarcia strony statystyk spraw.");
+        testingObject.goToMainPage();
         Assert.assertEquals(testingObject.goToStatisticsPage(), "Statystyki pomocnicze / Statystyka spraw");
     }
 
@@ -34,8 +43,9 @@ public class CpsStatisticsTestP extends CPSTestsMain {
         // the correctness of system implementation in general.
     }
 
-    @AfterTest
+    @AfterTest(enabled = false)
     public void closeAndQuitDriver() {
-        super.closeAndQuitDriver();
+        System.out.println("Kończenie pracy drivera.");
+        driver.quit();
     }
 }
