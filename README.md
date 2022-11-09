@@ -15,16 +15,16 @@ Short description:
 
 pl.config.AppPages, this class is responsible for holding app pages addresses and performing basic operations on them, such as going to main page. <br/>
 pl.config.DataFiles, this enum is responsible for storing paths to necessary files/directories(such as path to csv file that contains data used in tests) <br/>
-pl.config.WebDrivers, this class is responsible for storing chromedriver path etc. 
+pl.config.WebDrivers, this class is responsible for storing chromedriver path etc. <br/>
 
-pl.operations.CsvReader, this class is responsible for reading a ceratin data from csv file
-pl.operations.Screenshot, this class is responsible for taking snapshots
+pl.operations.CsvReader, this class is responsible for reading a ceratin data from csv file <br/>
+pl.operations.Screenshot, this class is responsible for taking snapshots <br/>
 
-pl.pages - this package contains app pages that are being tested. Elements on the page are identified using XPath. 
+pl.pages - this package contains app pages that are being tested. Elements on the page are identified using XPath. <br/>
 
-[tests]
+[tests] <br/>
 
-At this moment - tests have only positive meaning, i.e. they check whether app behaves properly when correct data is given. 
+At this moment - tests have only positive meaning, i.e. they check whether app behaves properly when correct data is given. <br/>
 
-tests.test-input-data.db-connections - this directory is responsible for storing tests inputs, at this moment only data used to check db connection is being stored(inside SettingsData.csv file) 
-tests.tests-screenshots - when snapshot is taken, the results are stored inside this directory 
+tests.test-input-data.db-connections - this directory is responsible for storing tests inputs, at this moment only data used to check db connection is being stored(inside SettingsData.csv file)  <br/>
+tests.tests-screenshots - when snapshot is taken, the results are stored inside this directory  <br/>
