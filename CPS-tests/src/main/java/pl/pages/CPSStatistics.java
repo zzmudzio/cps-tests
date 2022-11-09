@@ -7,9 +7,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pl.config.AppPages;
 
 
-public class CPSStatistics {
-    private WebDriver driver;
-    private WebDriverWait driverWait;
+public class CPSStatistics extends AppPages{
+    private final WebDriver driver;
+    private final WebDriverWait driverWait;
 
     public CPSStatistics(WebDriver driver, WebDriverWait driverWait) {
         this.driver = driver;
@@ -28,9 +28,7 @@ public class CPSStatistics {
             "//tbody/tr[13]/td[1]/span");
 
     public String goToMainPage() {
-        driver.get(AppPages.getMainPageAddress());
-        driver.manage().window().maximize();
-        return driver.getTitle();
+        return super.goToMainPage(driver);
     }
 
     public String goToStatisticsPage() {
