@@ -12,63 +12,56 @@ regulations changing.
 
  */
 public class CPSRegulationsDialog extends AppPages {
-
-    WebDriver driver;
-    WebDriverWait driverWait;
+    private final WebDriver driver;
+    private final WebDriverWait driverWait;
 
     public CPSRegulationsDialog(WebDriver driver, WebDriverWait driverWait) {
         this.driver = driver;
         this.driverWait = driverWait;
     }
 
-    By regulationsDialogLocator = new By.ByXPath("/html/body/div/div[1]");
-    By regulationsDialogCancelButtonLocator = new By.ByXPath("//button[contains(text(), \"Anuluj\")]");
-    By regulationsDialogAcceptButtonLocator = new By.ByXPath(".//div[@class='e-dlg-container " +
+    private final By regulationsDialogLocator = new By.ByXPath("/html/body/div/div[1]");
+    private final By regulationsDialogCancelButtonLocator = new By.ByXPath("//button[contains(text(), \"Anuluj\")]");
+    private final By regulationsDialogAcceptButtonLocator = new By.ByXPath(".//div[@class='e-dlg-container " +
             "e-dlg-center-center']" +
                     "/div/div[3]/span/button[contains(text(), 'Akceptuję')]");
-    By regulationsNotAcceptedCloseButtonLocator = new By.ByXPath("//button[contains(text(), 'Zamknij')]");
+    private final By regulationsNotAcceptedCloseButtonLocator = new By.ByXPath("//button[contains(text(), 'Zamknij')]");
 
-    @Override
     public String goToMainPage() {
-        driver.get(AppPages.getMainPageAddress());
-        return driver.getTitle();
+        return super.goToMainPage(driver);
     }
 
     public boolean acceptRegulations() {
-
         /* Waiting for regulations dialog to be visible */
-
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsDialogLocator)); //5 seconds
             /* Regulation dialog has to be scrolled down for accept button to be enabled */
             Robot mouse = new Robot();
             mouse.mouseWheel(300);
+            driverWait.until(ExpectedConditions.elementToBeClickable(regulationsDialogAcceptButtonLocator));
+            driver.findElement(regulationsDialogAcceptButtonLocator).click();
+            return true;
         }
         catch(TimeoutException te) {
-            System.out.println("Błąd: Okno regulaminu nie pojawiło się. \n");
+            System.out.println("Błąd: Okno regulaminu/przycisk 'Akceptuj' nie pojawił/o się. \n");
             return false;
         }
         catch(AWTException awte) {
             System.out.println("Błąd: Nie udało się przescrollować regulaminu");
-        }
-
-        try {
-            driverWait.until(ExpectedConditions.elementToBeClickable(regulationsDialogAcceptButtonLocator));
-            driver.findElement(regulationsDialogAcceptButtonLocator).click();
-        }
-        catch(TimeoutException te) {
-            System.out.println("Błąd: Przycisk \"Akceptuj\" nie pojawił się. ");
             return false;
         }
-        return true;
+        catch(NotFoundException nfe) {
+            System.out.println("Błąd: nie udało się odnaleźć przycisku 'Akceptuj'");
+            return false;
+        }
     }
 
     public boolean cancelRegulations() {
-
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsDialogLocator)); //Duration = 5s
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsDialogCancelButtonLocator)); //Duration = 5s
             driver.findElement(regulationsDialogCancelButtonLocator).click();
+            return true;
         }
         catch(TimeoutException te) {
             System.out.println("Błąd: Okno regulaminu nie pojawiło się. \n");
@@ -78,22 +71,21 @@ public class CPSRegulationsDialog extends AppPages {
             System.out.println("Błąd: Nie udało się odnaleźć przycisku Cancel.");
             return false;
         }
-        return true;
     }
 
     public boolean closeRegulationsWarningWindow() {
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(regulationsNotAcceptedCloseButtonLocator)); //Duration = 5s
             driver.findElement(regulationsNotAcceptedCloseButtonLocator).click();
+            return true;
         }
         catch(TimeoutException te) {
             System.out.println("Bład: Okno informacyjne dot. konieczności akceptacji regulaminu nie pojawiło się.");
             return false;
         }
         catch(NotFoundException nfe) {
-            System.out.println("Błąd: Przycisk \'Zamknij\' nie pojawił się. ");
+            System.out.println("Błąd: Przycisk 'Zamknij' nie pojawił się. ");
             return false;
         }
-        return true;
     }
 }
