@@ -37,6 +37,7 @@ public class CpsAppSettings extends AppPages{
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(settingsButtonLocator));
             driver.findElement(settingsButtonLocator).click();
+            return true;
         }
         catch(TimeoutException te) {
             System.out.println("Błąd: Przycisk konfiguracji nie pojawił się.");
@@ -46,13 +47,13 @@ public class CpsAppSettings extends AppPages{
             System.out.println("Błąd: Przycisk konfiguracji nie został odnaleziony.");
             return false;
         }
-        return true;
     }
 
     public boolean clickAddConnection() {
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(addConnectionButtonLocator));
             driver.findElement(addConnectionButtonLocator).click();
+            return true;
         }
         catch(TimeoutException te) {
             System.out.println("Błąd: Przycisk dodawania połączenia nie pojawił się.");
@@ -62,7 +63,6 @@ public class CpsAppSettings extends AppPages{
             System.out.println("Błąd: Przycisk dodawania połączenia nie został odnaleziony");
             return false;
         }
-        return true;
     }
 
     public boolean addDbConnections(String serverName, String dataBaseName, String user, String password) {
@@ -83,19 +83,20 @@ public class CpsAppSettings extends AppPages{
                     .click()
                     .sendKeys(password)
                     .perform();
+            return true;
         }
         catch(Exception e) {
             System.out.println("Wystąpił błąd podczas próby definiowania połączenia do bazy danych.");
             e.printStackTrace();
             return false;
         }
-        return true;
     }
 
     public boolean clickTestConnection() {
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(testConnectionButtonLocator));
             driver.findElement(testConnectionButtonLocator).click();
+            return true;
         }
         catch(TimeoutException te) {
             System.out.println("Błąd: Przycisk 'Test połączenia' nie pojawił się.");
@@ -105,13 +106,13 @@ public class CpsAppSettings extends AppPages{
             System.out.println("Błąd: Przycisk 'Test połączenia' nie został odnaleziony.");
             return false;
         }
-        return true;
     }
 
     public boolean clickSaveConnection() {
         try {
             driverWait.until(ExpectedConditions.elementToBeClickable(saveConnectionButtonLocator));
             driver.findElement(saveConnectionButtonLocator).click();
+            return true;
         }
         catch(TimeoutException te) {
             System.out.println("Błąd: Przycisk 'Zapisz połączenie' nie uaktywnił się.");
@@ -121,13 +122,13 @@ public class CpsAppSettings extends AppPages{
             System.out.println("Błąd: Przycisk 'Zapisz połączenie' nie został odnaleziony.");
             return false;
         }
-        return true;
     }
 
     public boolean clickCloseConnectionWindow() {
         try {
             driverWait.until(ExpectedConditions.elementToBeClickable(closeConnectionWindowButtonLocator));
             driver.findElement(closeConnectionWindowButtonLocator).click();
+            return true;
         }
         catch(TimeoutException te) {
             System.out.println("Błąd: Przycisk 'Zamknij' nie uaktywnił się.");
@@ -137,12 +138,12 @@ public class CpsAppSettings extends AppPages{
             System.out.println("Błąd: Przycisk 'Zamknij' nie został odnaleziony.");
             return false;
         }
-        return true;
     }
     public boolean verifyConnectionExistence() {
         try {
             driverWait.until(ExpectedConditions.visibilityOfElementLocated(dbConnectionEntryLocator));
             driver.findElement(dbConnectionEntryLocator);
+            return true;
         }
         catch(NotFoundException nfe) {
             System.out.println("Błąd: połączenie do bazy danych nie zostało poprawnie dodane. " +
@@ -153,6 +154,5 @@ public class CpsAppSettings extends AppPages{
             System.out.println("Błąd: połączenie do bazy danych nie zostało odnalezione.");
             return false;
         }
-        return true;
     }
 }
