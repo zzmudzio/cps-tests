@@ -13,8 +13,8 @@ Short description:
 
 [main]
 
-pl.config.AppPages, this class is responsible for holding app pages addresses and performing basic operations on them, such as going to main page. 
-pl.config.DataFiles, this enum is responsible for storing paths to necessary files/directories(such as path to csv file that contains data used in tests)
+pl.config.AppPages, this class is responsible for holding app pages addresses and performing basic operations on them, such as going to main page. <br/>
+pl.config.DataFiles, this enum is responsible for storing paths to necessary files/directories(such as path to csv file that contains data used in tests) <br/>
 pl.config.WebDrivers, this class is responsible for storing chromedriver path etc. 
 
 pl.operations.CsvReader, this class is responsible for reading a ceratin data from csv file
